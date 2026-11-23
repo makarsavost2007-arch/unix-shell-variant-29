@@ -1,3 +1,4 @@
+require_relative 'vfs'
 require 'csv'
 require 'time'
 
@@ -5,6 +6,7 @@ class Session < Shell
   def initialize(options)
     super()
     @options = options
+    @vfs = Vfs.new(options['vfs'])
   end
 
   def execute(line)

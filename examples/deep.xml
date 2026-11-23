@@ -1,0 +1,8 @@
+<vfs>
+  <dir name="course">
+    <dir name="week">
+      <dir name="lab"><file name="hello.txt">SGVsbG8K</file></dir>
+    </dir>
+  </dir>
+  <file name="notes.txt">YWJj</file>
+</vfs>
