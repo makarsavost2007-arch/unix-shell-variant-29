@@ -1,10 +1,15 @@
 require 'etc'
 require 'socket'
 
+require_relative 'commands'
+require_relative 'vfs'
+
 class Shell
+  include Commands
   attr_reader :user
 
-  def initialize
+  def initialize(vfs = Vfs.new)
+    @vfs = vfs
     @user = Etc.getpwuid.name
     @host = Socket.gethostname
     @cwd = '/'
@@ -21,8 +26,11 @@ class Shell
     when 'exit'
       raise ArgumentError, 'exit без аргументов' unless args.empty?
       :exit
-    when 'ls', 'cd'
-      puts ([name] + args).join(' ')
+    when 'ls', 'cd', 'tree', 'du'
+      navigate(name, args)
+    when 'pwd'
+      raise ArgumentError, 'pwd без аргументов' unless args.empty?
+      puts @cwd
     else
       raise ArgumentError, "Неизвестная команда: #{name}"
     end

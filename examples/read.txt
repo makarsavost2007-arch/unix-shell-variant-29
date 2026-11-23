@@ -1,0 +1,12 @@
+pwd
+ls
+ls notes.txt
+cd course/week
+pwd
+tree
+du .
+cd ..
+cd
+tree /
+du notes.txt
+cd missing

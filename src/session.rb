@@ -4,9 +4,8 @@ require 'time'
 
 class Session < Shell
   def initialize(options)
-    super()
+    super(Vfs.new(options['vfs']))
     @options = options
-    @vfs = Vfs.new(options['vfs'])
   end
 
   def execute(line)
