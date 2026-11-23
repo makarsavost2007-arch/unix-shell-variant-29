@@ -1,11 +1,13 @@
 require 'etc'
 require 'socket'
 
+require_relative 'mutations'
 require_relative 'commands'
 require_relative 'vfs'
 
 class Shell
   include Commands
+  include Mutations
   attr_reader :user
 
   def initialize(vfs = Vfs.new)
@@ -28,6 +30,8 @@ class Shell
       :exit
     when 'ls', 'cd', 'tree', 'du'
       navigate(name, args)
+    when 'rm' then remove(args)
+    when 'mv' then move(args)
     when 'pwd'
       raise ArgumentError, 'pwd без аргументов' unless args.empty?
       puts @cwd

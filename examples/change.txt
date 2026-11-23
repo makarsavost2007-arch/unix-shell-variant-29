@@ -1,0 +1,11 @@
+mv notes.txt todo.txt
+mv todo.txt course/week
+tree
+rm course/week/todo.txt
+cd course
+mv /course /term
+pwd
+cd /
+rm -r term
+du /
+rm missing
